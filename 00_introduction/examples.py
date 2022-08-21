@@ -20,7 +20,7 @@ def plot_multiple():
     power_plot(x_range, 2)
     power_plot(x_range, 3)
 
-    plt.legend(loc='lower right')
+    plt.legend(loc='lower right') # ?????
     plt.show()
 
 

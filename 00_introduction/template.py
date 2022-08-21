@@ -1,8 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-
-def normal(x: np.ndarray, sigma: float, mu: float) -> np.ndarray:
+'''
+#def normal(x: np.ndarray, sigma: float, mu: float) -> np.ndarray:
     # Part 1.1
 
 def plot_normal(sigma: float, mu:float, x_start: float, x_end: float):
@@ -23,5 +23,8 @@ def sample_gaussian_mixture(sigmas: list, mus: list, weights: list, n_samples: i
 def _plot_mixture_and_samples():
     # Part 3.2
 
+'''
+
 if __name__ == '__main__':
     # select your function to test here and do `python3 template.py`
+    print(np.power(x,2))
