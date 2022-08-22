@@ -1,5 +1,8 @@
-#      Help that I got:
-# 1.2: Got help from examples.py
+# Author: Nína Lea Z. Jónsdóttir     
+# Date: 21.08.2022
+# Project: 
+# Acknowledgements:
+#  1.2: Got help from examples.py
 
 import numpy as np
 import matplotlib.pyplot as plt
