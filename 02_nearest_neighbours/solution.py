@@ -1,7 +1,7 @@
 # Author: Nína Lea Z. Jónsdóttir
 # Date: 25.08.2022
 # Project: 02_nerest_neighbours
-# Acknowledgements: 
+# Acknowledgements:
 # 1.4, 1.5 collaborated with Magnea
 # 2.3 - 2.5 collaborated with Arnbjörg
 
@@ -20,7 +20,7 @@ def euclidian_distance(x: np.ndarray, y: np.ndarray) -> float:
     '''
     d = np.sqrt(np.sum(np.power(x-y,2)))
     return d
-    
+
 
 
 def euclidian_distances(x: np.ndarray, points: np.ndarray) -> np.ndarray:
@@ -86,7 +86,7 @@ def knn_predict(
     k: int
 ) -> np.ndarray:
     # help.remove_one(points, i)
-    
+
     predictions = np.zeros(points.shape[0]).astype(int)
     for point in range(len(points)):
         x = points[point]
@@ -217,42 +217,42 @@ if __name__ == '__main__':
 
     # 1.1
     x, points = d[0,:], d[1:, :]
-    d = euclidian_distance(x, points[50])
-    #print(d)
+    dist = euclidian_distance(x, points[50])
+    print(dist)
 
     # 1.2
-    ds = euclidian_distances(x, points) 
-    # print(ds)
+    ds = euclidian_distances(x, points)
+    print(ds)
 
     # 1.3
-    #print(k_nearest(x, points, 3))
+    print(k_nearest(x, points, 3))
 
     # 1.4
-    #vote = vote(np.array([0,0,1,2]), np.array([0,1,2]))
-    # print(vote)
+    vote_result = vote(np.array([0,0,1,2]), np.array([0,1,2]))
+    print(vote_result)
 
     # 1.5
     x_target, point_targets = t[0], t[1:]
-    knn_result = knn(x, points, point_targets, classes, 150)
-    #print(knn_result)
+    knn_result = knn(x_target, points, point_targets, classes, 150)
+    print(knn_result)
 
-    # 2.1 
+    # 2.1
     d, t, classes = load_iris()
     (d_train, t_train), (d_test, t_test) = split_train_test(d, t, train_ratio = 0.8)
     predictions = knn_predict(d_test, t_test, classes, 5)
-    #print(predictions)
+    print(predictions)
 
     # 2.2
     acc = knn_accuracy(d_test, t_test, classes,5)
-    #print(acc)
+    print(acc)
 
     # 2.3
     matrix = knn_confusion_matrix(d_test, t_test, classes, 10)
-    #print(matrix)
+    print(matrix)
 
     # 2.4
-    k = best_k(d_train, t_train, classes)
-    #print(k)
+    k_best = best_k(d_train, t_train, classes)
+    print(k_best)
 
     # 2.5
     knn_plot_points(d, t, classes, 3)
