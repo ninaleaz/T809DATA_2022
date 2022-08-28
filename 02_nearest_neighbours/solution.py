@@ -247,7 +247,7 @@ if __name__ == '__main__':
     print(acc)
 
     # 2.3
-    matrix = knn_confusion_matrix(d_test, t_test, classes, 10)
+    matrix = knn_confusion_matrix(d_test, t_test, classes, 20)
     print(matrix)
 
     # 2.4
