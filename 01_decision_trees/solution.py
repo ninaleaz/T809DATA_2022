@@ -159,7 +159,8 @@ class IrisTreeTrainer:
 
     def accuracy(self):
         # use method from decisiontreeclassifier()
-        accuracy = accuracy_score(self.test_features,self.test_targets)
+        features = self.test_features.argmax(axis=1)
+        accuracy = accuracy_score(features,self.test_targets)
         return accuracy
 
     def plot(self):
@@ -201,49 +202,52 @@ class IrisTreeTrainer:
 
         return conf_matrix
 
-# MAIN PART
 
-# 1.1
-#x = prior([0,2,3,3],[0,1,2,3])
-#print(x)
 
-# 1.2
-features, targets, classes = load_iris()
-(f_1, t_1), (f_2, t_2) = split_data(features, targets, 2, 4.65)
-#print((len(f_1), len(t_1)), (len(f_2), len(t_2)))
+if __name__ == '__main__':
 
-# 1.3
-#impurity = gini_impurity(t_2, classes)
-#print(impurity)
+    
+    # 1.1
+    x = prior([0,2,3,3],[0,1,2,3])
+    print(x)
+    
+    # 1.2
+    features, targets, classes = load_iris()
+    (f_1, t_1), (f_2, t_2) = split_data(features, targets, 2, 4.65)
+    print((len(f_1), len(t_1)), (len(f_2), len(t_2)))
 
-# 1.4
-w_i = weighted_impurity(t_1, t_2, classes)
-#print(w_i)
+    # 1.3
+    impurity = gini_impurity(t_2, classes)
+    print(impurity)
 
-# 1.5
-tgi = total_gini_impurity(features, targets, classes, 2, 4.65)
-#print(tgi)
+    # 1.4
+    w_i = weighted_impurity(t_1, t_2, classes)
+    print(w_i)
 
-# 1.6
-#print(brute_best_split(features, targets, classes, 30))
+    # 1.5
+    tgi = total_gini_impurity(features, targets, classes, 2, 4.65)
+    print(tgi)
 
-# Part 2
-# 2.1
-#dt = IrisTreeTrainer(features, targets, classes=classes)
-#dt.train()
+    # 1.6
+    print(brute_best_split(features, targets, classes, 30))
+    
+    # Part 2
+    # 2.1
+    dt = IrisTreeTrainer(features, targets, classes=classes)
+    dt.train()
 
-# 2.2
-#print(f'The accuracy is: {dt.accuracy()}')
+    # 2.2
+    print(f'The accuracy is: {dt.accuracy()}')
 
-# 2.3
-#dt.plot() #ath fæ einhverja villu hér
+    # 2.3
+    dt.plot()
 
-# 2.4
-#print(f'I guessed: {dt.guess()}')
+    # 2.4
+    print(f'I guessed: {dt.guess()}')
 
-# 2.5
-#print(dt.confusion_matrix())
+    # 2.5
+    print(dt.confusion_matrix())
 
-#Independent part
-dt = IrisTreeTrainer(features, targets, classes=classes, train_ratio=0.6)
-dt.plot_progress()
+    #Independent part
+    dt = IrisTreeTrainer(features, targets, classes=classes, train_ratio=0.6)
+    dt.plot_progress()
