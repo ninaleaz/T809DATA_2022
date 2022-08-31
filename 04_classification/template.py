@@ -101,3 +101,27 @@ def maximum_aposteriori(
     array
     '''
     ...
+
+    # teacher:
+    # 1.1
+    # split train test is using random
+
+    # 1.3
+    # one point one number, gives output: likeleehood of this point is in what class
+
+    # 1.4
+    # for every datapoint
+    # given the vector we get, what class is the output likeliest to be?
+
+    # 1.5 
+    # how likely is it that this point comes from this distribution
+
+    # 2.1
+    # adding probabilty of each class (the extra formula)
+    # we are scaling the lielyhood with this number
+
+    # 2.2
+    # pdf svara spurningum
+
+    # independent
+    # posteriori should give us better resaults

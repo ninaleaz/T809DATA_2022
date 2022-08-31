@@ -68,3 +68,37 @@ def gen_changing_data(
 def _plot_changing_sequence_estimate():
     # remove this if you don't go for the independent section
     ...
+
+#hann prófaði í tíma:
+# 1.1
+mean = [0,0]
+cov = [[1,0], [0,100]]
+# ef við gerum þetta 2x þá koma mismunandi tölur því þetta er randnom
+np.random.multivariate_normal(mean,cov,10)
+# nú fæ ég sömu tölur og áðan með þessari skipun
+# seed er til að prófa, viljum það svosem ekki
+np.random.seed(1234)
+np.random.multivariate_normal(mean,cov,10)
+
+# 1.2 skila á pdf formi wtf
+
+# 1.4
+# mu = mean
+
+# from teacher
+
+from scipy.stats import multivariable_normal
+rv = multivariable_normal([0.5,-0.2],[[2.0,0.3],[0.3,0.5]])
+rv
+# gives us the right thing
+rv.
+
+rv.pdf([2.2,-1.2])
+rv.pdf([1.1,-0.2])
+rv.pdf([0.5,-0.2])
+
+np.identity(5)
+
+x = np.identity(5)
+x
+x.T
