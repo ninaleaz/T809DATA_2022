@@ -3,9 +3,6 @@
 # Project: Sequential Estimation
 # Acknowledgements: 
 # 1.2 section collaborated with Einar and Magnea
-# Independent section collaborated with Arnbjörg
-# ATH vantar:
-#       ræða um idependent section
 
 
 from tools import scatter_3d_data, bar_per_axis
@@ -75,9 +72,9 @@ def _plot_mean_square_error():
 if __name__ == '__main__':
 
     # 1.1
-    #print(gen_data(2, 3, np.array([0, 1, -1]), 1.3))
+    print(gen_data(2, 3, np.array([0, 1, -1]), 1.3))
     X = gen_data(300, 3, np.array([0,1,-1]), np.sqrt(3))
-    #print(X)
+    print(X)
 
     # 1.2
     scatter_3d_data(X)
@@ -86,11 +83,11 @@ if __name__ == '__main__':
     # 1.4
     mean = np.mean(X, 0)
     new_x = gen_data(1, 3, np.array([0, 0, 0]), 1)
-    #print(update_sequence_mean(mean, new_x, X.shape[0]))
+    print(update_sequence_mean(mean, new_x, X.shape[0]))
 
     # 1.5
-    #_plot_sequence_estimate() 
+    _plot_sequence_estimate() 
 
     # 1.6
-    #_plot_mean_square_error()
+    _plot_mean_square_error()
 

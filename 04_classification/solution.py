@@ -166,26 +166,26 @@ if __name__ == '__main__':
     # 1.1
     features, targets, classes = load_iris()
     (train_features, train_targets), (test_features, test_targets) = split_train_test(features, targets, train_ratio=0.6)
-    #print(mean_of_class(train_features, train_targets, 0))
+    print(mean_of_class(train_features, train_targets, 0))
 
     # 1.2
-    #print(covar_of_class(train_features, train_targets, 0))
+    print(covar_of_class(train_features, train_targets, 0))
 
     # 1.3
     class_mean = mean_of_class(train_features, train_targets, 0)
     class_cov = covar_of_class(train_features, train_targets, 0)
-    #print(likelihood_of_class(test_features[0, :], class_mean, class_cov))
+    print(likelihood_of_class(test_features[0, :], class_mean, class_cov))
 
     # 1.4
-    #print(maximum_likelihood(train_features, train_targets, test_features, classes))
+    print(maximum_likelihood(train_features, train_targets, test_features, classes))
 
     # 1.5 
     likelihoods1 = maximum_likelihood(train_features, train_targets, test_features, classes)
-    #print(predict(likelihoods1))
+    print(predict(likelihoods1))
 
     # 2.1
     likelihoods2 = maximum_aposteriori(train_features, train_targets, test_features, classes)
-    #print(likelihoods2)
+    print(likelihoods2)
 
     # 2.2
     print(accuracy(likelihoods1,test_targets))
