@@ -1,3 +1,6 @@
+#Author: Nína Lea Z. Jónsdóttir
+# Aknowledgements: collaborated with Magnea and Roman
+
 from typing import Union
 import numpy as np
 

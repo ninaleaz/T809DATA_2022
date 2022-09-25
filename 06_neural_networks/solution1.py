@@ -1,12 +1,9 @@
 import torch
 import torchvision
 import torchvision.transforms as transforms
-import matplotlib.pyplot as plt
-import numpy as np
-import torch.nn as nn
-import torch.nn.functional as F
-import torch.optim as optim
+import ssl
 
+ssl._create_default_https_context = ssl._create_unverified_context
 
 transform = transforms.Compose(
     [transforms.ToTensor(),
@@ -27,24 +24,19 @@ testloader = torch.utils.data.DataLoader(testset, batch_size=batch_size,
 classes = ('plane', 'car', 'bird', 'cat',
            'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
-# functions to show an image
-
-
 def imshow(img):
     img = img / 2 + 0.5     # unnormalize
     npimg = img.numpy()
     plt.imshow(np.transpose(npimg, (1, 2, 0)))
     plt.show()
 
+import matplotlib.pyplot as plt
+import numpy as np
 
-# get some random training images
-dataiter = iter(trainloader)
-images, labels = dataiter.next()
+# functions to show an image
 
-# show images
-imshow(torchvision.utils.make_grid(images))
-# print labels
-print(' '.join(f'{classes[labels[j]]:5s}' for j in range(batch_size)))
+import torch.nn as nn
+import torch.nn.functional as F
 
 
 class Net(nn.Module):
@@ -69,6 +61,8 @@ class Net(nn.Module):
 
 net = Net()
 
+import torch.optim as optim
+
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
@@ -91,29 +85,25 @@ for epoch in range(2):  # loop over the dataset multiple times
         # print statistics
         running_loss += loss.item()
         if i % 2000 == 1999:    # print every 2000 mini-batches
-            print(f'[{epoch + 1}, {i + 1:5d}] loss: {running_loss / 2000:.3f}')
+            print('[%d, %5d] loss: %.3f' %
+                  (epoch + 1, i + 1, running_loss / 2000))
             running_loss = 0.0
-
-print('Finished Training')
-
 PATH = './cifar_net.pth'
 torch.save(net.state_dict(), PATH)
+print('Finished Training')
 
 dataiter = iter(testloader)
 images, labels = dataiter.next()
 
 # print images
 imshow(torchvision.utils.make_grid(images))
-print('GroundTruth: ', ' '.join(f'{classes[labels[j]]:5s}' for j in range(4)))
-
-net = Net()
-net.load_state_dict(torch.load(PATH))
+print('GroundTruth: ', ' '.join('%5s' % classes[labels[j]] for j in range(4)))
 
 outputs = net(images)
 
 _, predicted = torch.max(outputs, 1)
 
-print('Predicted: ', ' '.join(f'{classes[predicted[j]]:5s}'
+print('Predicted: ', ' '.join('%5s' % classes[predicted[j]]
                               for j in range(4)))
 
 correct = 0
@@ -129,7 +119,8 @@ with torch.no_grad():
         total += labels.size(0)
         correct += (predicted == labels).sum().item()
 
-print(f'Accuracy of the network on the 10000 test images: {100 * correct // total} %')
+print('Accuracy of the network on the 10000 test images: %d %%' % (
+    100 * correct / total))
 
 # prepare to count predictions for each class
 correct_pred = {classname: 0 for classname in classes}
@@ -151,40 +142,5 @@ with torch.no_grad():
 # print accuracy for each class
 for classname, correct_count in correct_pred.items():
     accuracy = 100 * float(correct_count) / total_pred[classname]
-    print(f'Accuracy for class: {classname:5s} is {accuracy:.1f} %')
-
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-
-# Assuming that we are on a CUDA machine, this should print a CUDA device:
-
-print(device)
-
-net.to(device)
-
-inputs, labels = data[0].to(device), data[1].to(device)
-
-import matplotlib.pyplot as plt
-# print misclassification rate for each class
-fig = plt.figure()
-plt.figure(figsize=(10,5))
-plt.title("Misclassification rate - Cifar10")
-plt.xlabel("Class")
-plt.ylabel("Misclassification rate [%]")
-
-for classname, correct_count in correct_pred.items():
-    misclassification = 100 * float(total_pred[classname] - correct_count) / total_pred[classname]
-    plt.bar(classname, misclassification)
-plt.show()
-
-
-matrix = np.zeros((len(classes), len(classes)))
-with torch.no_grad():
-    for data in testloader:
-        images, labels = data    
-        outputs = net(images)    
-        _, predictions = torch.max(outputs, 1)
-        for label, prediction in zip(labels, predictions):    
-          matrix[label][prediction] += 1
-print(matrix)
-
-del dataiter
+    print("Accuracy for class {:5s} is: {:.1f} %".format(classname,
+                                                   accuracy))
