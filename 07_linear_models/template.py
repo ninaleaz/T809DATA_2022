@@ -1,6 +1,6 @@
-# Author: 
-# Date:
-# Project: 
+# Author: Nína Lea Z. Jónsdóttir
+# Date: 05.10.22
+# Project: Linear Models for Regression
 # Acknowledgements: 
 #
 
@@ -35,7 +35,8 @@ def mvn_basis(
     * fi - [NxM] is the basis function vectors containing a basis function
     output fi for each data vector x in features
     '''
-    ...
+    mu_normal = multivariate_normal.pdf(X, mu, sigma)
+    return mu_normal
 
 
 def _plot_mvn():
@@ -79,3 +80,15 @@ def linear_model(
     Output: [Nx1] The prediction for each data vector in features
     '''
     ...
+
+
+# MAIN - muna að stroka út
+X, t = load_regression_iris()
+N, D = X.shape
+M, sigma = 10, 10
+mu = np.zeros((M, D))
+for i in range(D):
+    mmin = np.min(X[i, :])
+    mmax = np.max(X[i, :])
+    mu[:, i] = np.linspace(mmin, mmax, M)
+fi = mvn_basis(X, mu, sigma)
