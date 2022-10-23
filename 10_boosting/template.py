@@ -1,7 +1,7 @@
-# Author: 
-# Date:
-# Project: 
-# Acknowledgements: 
+# Author: Nína Lea Z. Jónsdóttir
+# Date: 23.10.22
+# Project: Boosting
+# Acknowledgements: Magnea
 #
 
 # NOTE: Your code should NOT contain any main functions or code that is executed
@@ -28,7 +28,7 @@ def get_better_titanic():
     Loads the cleaned titanic dataset but change
     how we handle the age column.
     '''
-    ...
+    (tr_X, tr_y), (tst_X, tst_y), submission_X = get_titanic()
 
 
 def rfc_train_test(X_train, t_train, X_test, t_test):
@@ -88,3 +88,6 @@ def _create_submission():
     ...
     prediction = ...
     build_kaggle_submission(prediction)
+
+get_better_titanic()
+tr_X[:1]
