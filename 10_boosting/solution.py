@@ -1,7 +1,7 @@
 # Author: Nína Lea Z. Jónsdóttir
 # Date: 23.10.22
 # Project: Boosting
-# Acknowledgements: Magnea
+# Acknowledgements: Magnea, Arnbjörg, Roman
 #
 
 # NOTE: Your code should NOT contain any main functions or code that is executed
