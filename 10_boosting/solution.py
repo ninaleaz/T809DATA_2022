@@ -171,11 +171,3 @@ def _create_submission():
     clf.fit(X_train, y_train)
     prediction = clf.predict(submission_X)
     build_kaggle_submission(prediction)
-
-
-(X_train, y_train), (X_test, y_test), submission_X = get_better_titanic()
-#print(rfc_train_test(X_train, y_train, X_test, y_test))
-
-#print(gb_train_test(X_train, y_train, X_test, y_test))
-#print(param_search(X_train, y_train))
-#print(gb_optimized_train_test(X_train, y_train, X_test, y_test))
