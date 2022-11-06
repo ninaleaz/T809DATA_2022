@@ -76,12 +76,13 @@ def _plot_pca_components():
 
     print(pca.components_)
 
-    for i in range(3):
+    for i in range(30):
         plt.subplot(5, 6, i + 1)
         plt.plot(pca.components_[i])
         plt.title("PCA" + str(i + 1))
 
     plt.show()
+
 
 
 def _plot_eigen_values():
@@ -131,5 +132,5 @@ def _plot_cum_variance():
     plt.show()
 
 # MAIN - muna að stroka út
-#_plot_pca_components()
-_plot_cum_variance()
+_plot_pca_components()
+#_plot_cum_variance()
